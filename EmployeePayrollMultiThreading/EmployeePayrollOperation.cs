@@ -46,6 +46,21 @@ namespace EmployeePayrollMultiThreading
             employeeDetailsList.Add(emp);
         }
 
+        //UC2 add employyee to payroll with thread
+        public void addEmployeeToPayrollWithThread(List<EmployeeDetails> employeeDetailsList)
+        {
+            employeeDetailsList.ForEach(empData =>
+            {
+                Task thread = new Task(() =>
+                {
+                    Console.WriteLine("Employee being addded " + empData.Name);
+                    this.addEmployeePayroll(empData);
+                    Console.WriteLine("Employee added " + empData.Name);
+                });
+                thread.Start();
+            });
+        }
+
         public bool addEmployeeToDatabase(EmployeeDetails employeeDetails)
         {
             SqlConnection connection = new SqlConnection(connectionString);

@@ -28,6 +28,12 @@ namespace EmployeePayrollTest
             DateTime stopDateTime = DateTime.Now;
             Console.WriteLine("Duration without thread: " + (stopDateTime - startDateTime));
 
+            //UC2 duration with thread 
+            DateTime startDateTimeThread = DateTime.Now;
+            employeePayrollOperations.addEmployeeToPayrollWithThread(employeeDetails);
+            DateTime endDateTimeThread = DateTime.Now;
+            Console.WriteLine("Duration with thread: " + (startDateTimeThread - endDateTimeThread ) );
+
         }
     }
 }
